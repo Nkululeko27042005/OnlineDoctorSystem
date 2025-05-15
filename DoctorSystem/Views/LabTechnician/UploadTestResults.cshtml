@@ -1,0 +1,194 @@
+﻿@model DoctorSystem.CollectionViewModels.UploadTestsCollection
+
+@{
+    ViewBag.Title = "UploadTestResults";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f9ff;
+        color: #333;
+        padding: 20px;
+    }
+
+    h2 {
+        text-align: center;
+        color: #005eb8;
+        margin-bottom: 30px;
+        font-weight: 600;
+    }
+
+    .form-horizontal {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 94, 184, 0.1);
+        max-width: 900px;
+        margin: auto;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .control-label {
+        width: 100%;
+        max-width: 200px;
+        color: #005eb8;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    .col-md-10 {
+        flex: 1;
+        min-width: 250px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccddee;
+        transition: border-color 0.3s;
+    }
+
+        .form-control:focus {
+            border-color: #005eb8;
+            box-shadow: 0 0 0 3px rgba(0, 94, 184, 0.2);
+            outline: none;
+        }
+
+    .text-danger {
+        color: #e53935;
+        margin-top: 4px;
+        font-size: 0.9em;
+    }
+
+    .btn-primary {
+        background-color: #005eb8;
+        color: white;
+        border: none;
+        padding: 10px 30px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s;
+        display: block;
+        margin: 30px auto 0;
+    }
+
+        .btn-primary:hover {
+            background-color: #004b94;
+        }
+
+    select.form-control {
+        background-color: #ffffff;
+        appearance: none;
+        padding-right: 30px;
+        background-image: url("data:image/svg+xml;utf8,<svg fill='%23005eb8' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 16px;
+    }
+
+    hr {
+        border-top: 1px solid #ccddee;
+        margin: 20px 0;
+    }
+</style>
+
+<h2 class="fw-bold">Upload Test Results</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.UploadTestResults.PatientName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UploadTestResults.PatientName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UploadTestResults.PatientName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UploadTestResults.VerifierName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UploadTestResults.VerifierName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UploadTestResults.VerifierName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UploadTestResults.TestRequestNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UploadTestResults.TestRequestNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UploadTestResults.TestRequestNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UploadTestResults.TestType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.UploadTestResults.TestTypeId, new SelectList(Model.TestTypes, "Id", "TestName"), "Select Medicine", new { @id = "dropdown", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.UploadTestResults.TestTypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UploadTestResults.Result, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UploadTestResults.Result, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UploadTestResults.Result, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UploadTestResults.Unit, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UploadTestResults.Unit, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UploadTestResults.Unit, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UploadTestResults.NormalRange, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UploadTestResults.NormalRange, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UploadTestResults.NormalRange, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UploadTestResults.ResultStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UploadTestResults.ResultStatus, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UploadTestResults.ResultStatus, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UploadTestResults.Summary, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.UploadTestResults.Summary, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UploadTestResults.Summary, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Upload" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "TestResultsList")
+</div>

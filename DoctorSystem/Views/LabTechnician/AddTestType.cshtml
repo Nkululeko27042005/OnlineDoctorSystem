@@ -1,0 +1,132 @@
+﻿@model DoctorSystem.Models.TestType
+
+@{
+    ViewBag.Title = "Add Test Type";
+}
+
+<style>
+    .add-test-container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 25px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .form-heading {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 20px;
+        font-size: 26px;
+    }
+
+        .form-heading i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+
+    .form-panel {
+        padding: 10px 0;
+    }
+
+    .form-label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 6px;
+        color: #34495e;
+    }
+
+    .form-group {
+        color: #3498db;
+    }
+    .styled-input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        transition: border-color 0.3s ease;
+    }
+
+        .styled-input:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+    .submit-group {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .submit-button {
+        background-color: #3498db;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        border: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+        .submit-button:hover {
+            background-color: #2980b9;
+        }
+
+    .text-danger {
+        color: #e74c3c;
+        margin-top: 5px;
+        font-size: 0.9em;
+    }
+
+    .back-link {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+        .back-link .btn-link {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+            .back-link .btn-link:hover {
+                text-decoration: underline;
+            }
+
+</style>
+
+<div class="add-test-container">
+
+    <h2 class="form-heading"><i class="fas fa-vial"></i> Add Test Type</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-panel">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TestName, htmlAttributes: new { @class = "form-label" })
+                @Html.EditorFor(model => model.TestName, new { htmlAttributes = new { @class = "form-control styled-input" } })
+                @Html.ValidationMessageFor(model => model.TestName, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "form-label" })
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control styled-input" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group submit-group">
+                <input type="submit" value="Add Test" class="btn btn-primary submit-button" />
+            </div>
+        </div>
+    }
+
+    <div class="back-link">
+        @Html.ActionLink("← Back to List", "Index", null, new { @class = "btn btn-link" })
+    </div>
+</div>
+

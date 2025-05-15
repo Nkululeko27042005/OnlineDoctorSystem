@@ -1,0 +1,82 @@
+﻿body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 30px;
+}
+
+#inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+}
+
+#hd {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 2px solid #dee2e6;
+    margin-bottom: 30px;
+}
+
+    #hd h2 {
+        font-size: 28px;
+        color: #007bff;
+        margin-bottom: 5px;
+    }
+
+    #hd h3 {
+        font-size: 18px;
+        color: #6c757d;
+    }
+
+.profile-section {
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+h2 {
+    font-size: 22px;
+    color: #343a40;
+    margin-bottom: 10px;
+}
+
+.job {
+    background: #f1f3f5;
+    border-left: 4px solid #17a2b8;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+    .job h2 {
+        margin: 5px 0;
+        font-size: 20px;
+        color: #495057;
+    }
+
+    .job h4 {
+        margin: 10px 0 0;
+        color: #6c757d;
+    }
+
+.yui-gf.last {
+    border-top: 2px solid #dee2e6;
+    padding-top: 20px;
+    margin-top: 40px;
+}
+
+    .yui-gf.last h2 {
+        color: #28a745;
+    }
+
+.enlarge {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 15px 0;
+    color: #343a40;
+}

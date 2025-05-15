@@ -1,0 +1,54 @@
+﻿@model IEnumerable<DoctorSystem.Models.Doctor>
+@{
+    ViewBag.Title = "ListOfDoctors";
+}
+
+<h2>List Of Doctors</h2>
+
+<table id="table_id" class="table">
+    <thead>
+        <tr>
+
+            <th>
+                FullName
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Education)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Education)
+                </td>
+                <td>
+                    <a href="@Url.Action("EditDoctors", new {id = item.Id})" class="fa fa-pencil-square-o" style="font-size: 19px"></a> |
+                    <a href="@Url.Action("DoctorDetail", new {id = item.Id})" class="fa fa-info-circle" style="font-size: 19px; color: lightblue"></a> |
+                    <a href="@Url.Action("DeleteDoctor", new {id = item.ApplicationUserId})" class="fa fa-trash" style="font-size: 19px; color: red"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+

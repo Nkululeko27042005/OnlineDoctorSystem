@@ -1,0 +1,119 @@
+﻿@model DoctorSystem.CollectionViewModels.CollectionOfAll
+@{
+    ViewBag.Title = "Index";
+}
+<head>
+    <!-- Add this in your <head> if not already included -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        .dashboard-wrapper {
+            padding: 30px;
+            background-color: #f8f9fa;
+            max-width: 900px;
+            margin: auto;
+        }
+        .dashboard-menu {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+            .welcome-section h2 {
+                font-size: 2rem;
+                font-weight: 700;
+                color: #343a40;
+            }
+
+        .highlight {
+            color: #007bff;
+        }
+
+        .menu-tabs {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+            .menu-tabs li {
+                position: relative;
+            }
+
+        .tab-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 25px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            background-color: #007bff;
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            height: 80px;
+        }
+
+            .tab-link:hover {
+                background-color: #0056b3;
+                transform: scale(1.02);
+            }
+
+        .icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.8rem;
+            color: white;
+        }
+    </style>
+
+</head>
+
+
+<div class="dashboard-wrapper">
+    <div class="welcome-section">
+        <h1>Welcome @User.Identity.Name to the <span class="highlight">Online Doctor Booking System</span></h1>
+        <h6>On the system you can Book Appointments and Cancel Appointments as well as view your pending and completed Appointments.</h6>
+        <h6>You can view prescriptions, diagnosis as well as make a review on the service you received.</h6>
+    </div>
+
+    <div class="dashboard-menu">
+
+        <ul class="menu-tabs">
+            <li>
+                @Html.ActionLink(" Book Appointment", "AddAppointment", "Patient", null, new { @class = "tab-link" })
+                <i class="fas fa-calendar-plus icon"></i>
+            </li>
+            <li>
+                @Html.ActionLink(" Cancel Appointment", "cancelAppointments", "Patient", null, new { @class = "tab-link" })
+                <i class="fas fa-calendar-times icon"></i>
+            </li>
+            <li>
+                @Html.ActionLink(" Pending Appointments", "PendingAppointments", "Patient", null, new { @class = "tab-link" })
+                <i class="fas fa-hourglass-half icon"></i>
+            </li>
+            <li>
+                @Html.ActionLink(" Completed Appointments", "CompletedAppointments", "Patient", null, new { @class = "tab-link" })
+                <i class="fas fa-check-circle icon"></i>
+            </li>
+            <li>
+                @Html.ActionLink(" Diagnosis List", "DiagnosisList", "Patient", null, new { @class = "tab-link" })
+                <i class="fas fa-notes-medical icon"></i>
+            </li>
+            <li>
+                @Html.ActionLink(" Prescription List", "PrescriptionList", "Patient", null, new { @class = "tab-link" })
+                <i class="fas fa-prescription-bottle-alt icon"></i>
+            </li>
+        </ul>
+    </div>
+
+</div>

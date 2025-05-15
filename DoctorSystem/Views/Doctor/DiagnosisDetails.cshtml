@@ -1,0 +1,57 @@
+﻿@model DoctorSystem.Models.Diagnosis
+
+@{
+    ViewBag.Title = "DiagnosisDetails";
+}
+
+<h2>Diagnosis Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Pateint Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patient.FullName)
+        </dd>
+
+        <dt>
+            Doctor Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DoctorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Diagnosistic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Diagnosistic)
+        </dd>
+
+        <dt>
+            Additional Notes 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdditionalNotes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,121 @@
+﻿@model DoctorSystem.CollectionViewModels.CollectionOfAll
+@{
+    ViewBag.Title = "Index";
+}
+<head>
+    <!-- Add this in your <head> if not already included -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        .dashboard-wrapper {
+            padding: 30px;
+            background-color: #f8f9fa;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .dashboard-menu {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+            .welcome-section h2 {
+                font-size: 2rem;
+                font-weight: 700;
+                color: #343a40;
+            }
+
+        .highlight {
+            color: #007bff;
+        }
+
+        .menu-tabs {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+            .menu-tabs li {
+                position: relative;
+            }
+
+        .tab-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 25px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            background-color: #007bff;
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            height: 80px;
+        }
+
+            .tab-link:hover {
+                background-color: #0056b3;
+                transform: scale(1.02);
+            }
+
+        .icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.8rem;
+            color: white;
+        }
+    </style>
+
+</head>
+
+
+<div class="dashboard-wrapper">
+    <div class="welcome-section">
+        <h1>Welcome Dr Mkhululi Manyoni to the <span class="highlight">Online Doctor Booking System</span></h1>
+        <h6>You can Check Patients In, as well as view your pending and completed Appointments.</h6>
+        <h6>You can make & view prescriptions, write & view diagnosis as well as see the reviews on the service you provided.</h6>
+    </div>
+    <div class="dashboard-menu">
+
+        <ul class="menu-tabs">
+            <li>
+                @Html.ActionLink(" Write Patient Diagnosis", "AddDiagnosis", "Doctor", null, new { @class = "tab-link" })
+                <i class="fas fa-notes-medical icon"></i>
+            </li>
+            <li>
+                @Html.ActionLink(" Diagnosis List", "DiagnosisList", "Doctor", null, new { @class = "tab-link" })
+                <i class="fas fa-notes-medical icon"></i>
+            </li>
+            <li>
+                @Html.ActionLink(" Write Prescription", "AddPrescription", "Doctor", null, new { @class = "tab-link" })
+                <i class="fas fa-prescription-bottle-alt icon"></i>
+            </li>
+            <li>
+                @Html.ActionLink(" Prescription List", "PrescriptionList", "Doctor", null, new { @class = "tab-link" })
+                <i class="fas fa-prescription-bottle-alt icon"></i>
+            </li>
+            <li>
+                @Html.ActionLink(" Appointments", "PendingAppointments", "Doctor", null, new { @class = "tab-link" })
+                <i class="fas fa-calendar-times icon"></i>
+            </li>
+        </ul>
+    </div>
+    <br />
+    <div class="welcome-section">
+       <a href="~/Views/Doctor/NotificationList.cshtml"><h4>Messages From The Lab:</h4></a> 
+        <h6>You Have @Model.Notifications.Where(model =>  model.DateTime >= DateTime.Now).Count() Messages From The Lab</h6>
+    </div>
+
+</div>

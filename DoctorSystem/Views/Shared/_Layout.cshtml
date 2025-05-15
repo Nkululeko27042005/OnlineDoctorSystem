@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Online Doctor Booking System</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/selectivizr@1.0.3/selectivizr.min.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#" style="color: darkgrey">Online Doctor Booking</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav">
+                    @if (User.IsInRole("Patient"))
+                    {
+                        <li class="nav-item">@Html.ActionLink(" Book Appointment", "AddAppointment", "Patient", new { area = "" }, new { @class = "nav-link custom-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("  Cancel Appointment", "cancelAppointments", "Patient", new { area = "" }, new { @class = "nav-link custom-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("   Pending Appointments", "PendingAppointments", "Patient", new { area = "" }, new { @class = "nav-link custom-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("    Completed Appointments", "CompletedAppointments", "Patient", new { area = "" }, new { @class = "nav-link custom-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("     Diagnosis List", "DiagnosisList", "Patient", new { area = "" }, new { @class = "nav-link custom-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("      Prescription List", "PrescriptionList", "Patient", new { area = "" }, new { @class = "nav-link custom-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("       Make Review", "MakeReview", "Patient", new { area = "" }, new { @class = "nav-link custom-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("        Reviews", "ReviewList", "Patient", new { area = "" }, new { @class = "nav-link custom-link", style = "color: darkgrey" })</li>
+                    }
+                    @if (User.IsInRole("Doctor"))
+                    {
+                        <li class="nav-item">@Html.ActionLink("Appointments", "CompletedAppointments", "Doctor", new { area = "" }, new { @class = "nav-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink(" Write Patient Diagnosis", "AddDiagnosis", "Doctor", new { area = "" }, new { @class = "nav-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("  Write Prescription", "AddPrescription", "Doctor", new { area = "" }, new { @class = "nav-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("   Diagnosis List", "DiagnosisList", "Doctor", new { area = "" }, new { @class = "nav-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("    Prescription List", "PrescriptionList", "Doctor", new { area = "" }, new { @class = "nav-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("     Request Tests", "AddTestRequest", "Doctor", new { area = "" }, new { @class = "nav-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("      Test Requests List", "TestRequestList", "Doctor", new { area = "" }, new { @class = "nav-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("       Test Results", "TestResultsList", "Doctor", new { area = "" }, new { @class = "nav-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("        Messages", "NotificationList", "Doctor", new { area = "" }, new { @class = "nav-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("         Reviews", "ReviewList", "Doctor", new { area = "" }, new { @class = "nav-link", style = "color: darkgrey" })</li>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">@Html.ActionLink(" Add Medication", "AddMedicine", "Admin", new { area = "" }, new { @class = "nav-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("  Check Patient In", "CheckingIn", "Admin", new { area = "" }, new { @class = "nav-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("    Completed Appointments", "CompletedAppointments", "Admin", new { area = "" }, new { @class = "nav-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("     Reviews", "ReviewList", "Admin", new { area = "" }, new { @class = "nav-link", style = "color: darkgrey" })</li>
+                    }
+
+                    @if (User.IsInRole("LabTechnician"))
+                    {
+                        <li class="nav-item">@Html.ActionLink("Test Requests", "TestRequestList", "LabTechnician", new { area = "" }, new { @class = "nav-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink(" Confirm Collection", "ConfirmCollection", "LabTechnician", new { area = "" }, new { @class = "nav-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("  Confirm Collection Lists", "ConfirmCollectionList", "LabTechnician", new { area = "" }, new { @class = "nav-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("   Upload Results", "UploadTestResults", "LabTechnician", new { area = "" }, new { @class = "nav-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("    Notify Doctor", "AddNotification", "LabTechnician", new { area = "" }, new { @class = "nav-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("     Notification Lists", "NotificationList", "LabTechnician", new { area = "" }, new { @class = "nav-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("      Test Result", "TestResultsList", "LabTechnician", new { area = "" }, new { @class = "nav-link", style = "color: darkgrey" })</li>
+                        <li class="nav-item">@Html.ActionLink("       Add Test Types", "AddTestType", "LabTechnician", new { area = "" }, new { @class = "nav-link", style = "color: darkgrey" })</li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container body-content mt-4">
+        @RenderBody()
+        <br />
+        <footer class="text-center text-muted py-3">
+            &copy; @DateTime.Now.Year - Online Doctor Booking System
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+

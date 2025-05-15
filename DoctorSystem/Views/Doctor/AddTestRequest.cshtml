@@ -1,0 +1,404 @@
+﻿@model DoctorSystem.CollectionViewModels.TestRequestCollection
+
+@{
+    ViewBag.Title = "AddTestRequest";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f9ff;
+        color: #333;
+        padding: 20px;
+    }
+
+    h2 {
+        text-align: center;
+        color: #005eb8;
+        margin-bottom: 30px;
+        font-weight: 600;
+    }
+
+    .form-horizontal {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 94, 184, 0.1);
+        max-width: 900px;
+        margin: auto;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .control-label {
+        width: 100%;
+        max-width: 200px;
+        color: #005eb8;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    .col-md-10 {
+        flex: 1;
+        min-width: 250px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccddee;
+        transition: border-color 0.3s;
+    }
+
+        .form-control:focus {
+            border-color: #005eb8;
+            box-shadow: 0 0 0 3px rgba(0, 94, 184, 0.2);
+            outline: none;
+        }
+
+    .text-danger {
+        color: #e53935;
+        margin-top: 4px;
+        font-size: 0.9em;
+    }
+
+    .btn-primary {
+        background-color: #005eb8;
+        color: white;
+        border: none;
+        padding: 10px 30px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s;
+        display: block;
+        margin: 30px auto 0;
+    }
+
+        .btn-primary:hover {
+            background-color: #004b94;
+        }
+
+    select.form-control {
+        background-color: #ffffff;
+        appearance: none;
+        padding-right: 30px;
+        background-image: url("data:image/svg+xml;utf8,<svg fill='%23005eb8' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 16px;
+    }
+
+    hr {
+        border-top: 1px solid #ccddee;
+        margin: 20px 0;
+    }
+</style>
+
+<h2>Request Tests</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h6>Doctor Profile</h6>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.DoctorId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(Model => Model.TestRequests.DoctorId, new SelectList(Model.Doctors, "Id", "FullName"), "Select Doctor", new { @id = "dropdown", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TestRequests.DoctorId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.PracticeNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TestRequests.PracticeNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TestRequests.PracticeNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.DoctorEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TestRequests.DoctorEmail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TestRequests.DoctorEmail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.DoctorAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TestRequests.DoctorAddress, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TestRequests.DoctorAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.DoctorTelephone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TestRequests.DoctorTelephone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TestRequests.DoctorTelephone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <h6>Patient Profile</h6>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.PatientIdNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TestRequests.PatientIdNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TestRequests.PatientIdNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.PatientId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TestRequests.PatientId, new SelectList(Model.Patients, "Id", "FullName"), "Select Patient", new { @id = "dropdown", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TestRequests.PatientId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TestRequests.Gender, new List<SelectListItem>
+           {
+               new SelectListItem() {Text = "Male"},
+               new SelectListItem() {Text = "Female"},
+               new SelectListItem() {Text = "Other"},
+           }, "Select Gender", new { @id = "dropdown", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TestRequests.Gender, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.Age, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TestRequests.Age, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TestRequests.Age, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.DoctorRef, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TestRequests.DoctorRef, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TestRequests.DoctorRef, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.TelephoneWork, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TestRequests.TelephoneWork, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TestRequests.TelephoneWork, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.CellNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TestRequests.CellNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TestRequests.CellNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TestRequests.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TestRequests.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.HomeAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TestRequests.HomeAddress, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TestRequests.HomeAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <br />
+        <h6>Collection Details</h6>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.CollectionSite, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TestRequests.CollectionSite, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TestRequests.CollectionSite, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.CollectionDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TestRequests.CollectionDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TestRequests.CollectionDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.CollectionTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TestRequests.CollectionTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TestRequests.CollectionTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.CollectedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TestRequests.CollectedBy, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TestRequests.CollectedBy, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.SpecialRequest, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TestRequests.SpecialRequest, new List<SelectListItem>
+           {
+               new SelectListItem() { Text = "Routine"},
+               new SelectListItem() { Text = "Urgent"},
+               new SelectListItem() { Text = "Fasting"},
+               new SelectListItem() { Text = "Random"}
+           }, "Select Special Request", new { @id = "dropdown", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TestRequests.SpecialRequest, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <br />
+        <h6>Required Tests</h6>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.TestTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TestRequests.TestTypeId, new SelectList(Model.TestTypes, "Id", "TestName"), "Select Test", new { @id = "dropdown", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TestRequests.TestTypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.TestTypeId2, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TestRequests.TestTypeId2, new SelectList(Model.TestTypes, "Id", "TestName"), "Select Test", new { @id = "dropdown", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TestRequests.TestTypeId2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.TestTypeId3, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TestRequests.TestTypeId3, new SelectList(Model.TestTypes, "Id", "TestName"), "Select Test", new { @id = "dropdown", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TestRequests.TestTypeId3, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.TestTypeId4, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TestRequests.TestTypeId4, new SelectList(Model.TestTypes, "Id", "TestName"), "Select Test", new { @id = "dropdown", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TestRequests.TestTypeId4, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.TestTypeId5, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TestRequests.TestTypeId5, new SelectList(Model.TestTypes, "Id", "TestName"), "Select Test", new { @id = "dropdown", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TestRequests.TestTypeId5, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.TestTypeId6, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TestRequests.TestTypeId6, new SelectList(Model.TestTypes, "Id", "TestName"), "Select Test", new { @id = "dropdown", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TestRequests.TestTypeId6, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.TestTypeId7, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TestRequests.TestTypeId7, new SelectList(Model.TestTypes, "Id", "TestName"), "Select Test", new { @id = "dropdown", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TestRequests.TestTypeId7, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.TestTypeId8, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TestRequests.TestTypeId8, new SelectList(Model.TestTypes, "Id", "TestName"), "Select Test", new { @id = "dropdown", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TestRequests.TestTypeId8, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.TestTypeId9, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TestRequests.TestTypeId9, new SelectList(Model.TestTypes, "Id", "TestName"), "Select Test", new { @id = "dropdown", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TestRequests.TestTypeId9, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.TestTypeId10, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TestRequests.TestTypeId10, new SelectList(Model.TestTypes, "Id", "TestName"), "Select Test", new { @id = "dropdown", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TestRequests.TestTypeId10, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.TestTypeId11, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TestRequests.TestTypeId11, new SelectList(Model.TestTypes, "Id", "TestName"), "Select Test", new { @id = "dropdown", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TestRequests.TestTypeId11, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.TestTypeId12, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TestRequests.TestTypeId12, new SelectList(Model.TestTypes, "Id", "TestName"), "Select Test", new { @id = "dropdown", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TestRequests.TestTypeId12, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <h6>Additional Info</h6>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.SpecimenTaken, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TestRequests.SpecimenTaken, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TestRequests.SpecimenTaken, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestRequests.ICD10, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TestRequests.ICD10, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TestRequests.ICD10, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-group text-center">
+                <input type="submit" value="Submit Request" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "TestTypeList")
+</div>

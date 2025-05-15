@@ -1,0 +1,15 @@
+﻿@model DoctorSystem.Models.TestRequests
+@{
+    ViewBag.Title = "Test Request View";
+}
+
+<h2>Requested Tests </h2>
+<br />
+<h5>Requested By : @Model.Doctor.FullName</h5>
+<h5>Patient Name :@Model.Patient.FullName</h5>
+<h5>Date : @Model.Date </h5>
+
+@using (Html.BeginForm("TestRequestView", "Doctor", FormMethod.Post))
+            {
+              
+            }

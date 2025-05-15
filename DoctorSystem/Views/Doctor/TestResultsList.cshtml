@@ -1,0 +1,136 @@
+﻿@model IEnumerable<DoctorSystem.Models.UploadTestResults>
+
+@{
+    ViewBag.Title = "TestResultsList";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f9ff;
+        margin: 20px;
+    }
+
+    h2 {
+        color: #007acc;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2rem;
+    }
+
+    #table_id {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+        #table_id thead {
+            background-color: #007acc;
+            color: white;
+        }
+
+        #table_id th,
+        #table_id td {
+            padding: 12px 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #table_id tbody tr:hover {
+            background-color: #f1faff;
+        }
+
+    .fa fa-book {
+        color: #17a2b8;
+        transition: color 0.3s ease;
+    }
+
+        .fa fa-book:hover {
+            color: #005f7f;
+        }
+</style>
+
+<h2>List Test Results</h2>
+
+
+<table id="table_id" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TestType.TestName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VerifierName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TestRequestNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Result)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Unit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NormalRange)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResultStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Summary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TestType.TestName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VerifierName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TestRequestNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Result)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Unit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NormalRange)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ResultStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Summary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                </td>
+            </tr>
+        </tbody>
+    }
+
+</table>

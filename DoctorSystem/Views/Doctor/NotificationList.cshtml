@@ -1,0 +1,83 @@
+﻿@model IEnumerable<DoctorSystem.Models.Notifications>
+
+@{
+    ViewBag.Title = "NotificationList";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f9ff;
+        margin: 20px;
+    }
+
+    h2 {
+        color: dodgerblue;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2rem;
+    }
+
+    #table_id {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+        #table_id thead {
+            background-color: #007acc;
+            color: white;
+        }
+
+        #table_id th,
+        #table_id td {
+            padding: 12px 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #table_id tbody tr:hover {
+            background-color: #f1faff;
+        }
+
+    .fa-info-circle {
+        color: #17a2b8;
+        transition: color 0.3s ease;
+    }
+
+        .fa-info-circle:hover {
+            color: #005f7f;
+        }
+</style>
+
+<h2 class="fw-bold">Notifications</h2>
+
+<table id ="table_id" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Message)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+@foreach (var item in Model) {
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Message)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTime)
+            </td>
+        </tr>
+    </tbody>
+}
+
+</table>

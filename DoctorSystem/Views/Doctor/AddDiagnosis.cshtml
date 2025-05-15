@@ -1,0 +1,124 @@
+﻿@model DoctorSystem.CollectionViewModels.DiagnosisCollection
+@{
+    ViewBag.Title = "AddDiagnosis";
+}
+
+<style>
+    .diagnosis-container {
+        max-width: 600px;
+        margin: 60px auto;
+        background-color: #f8fafc;
+        padding: 30px 40px;
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(0, 0, 128, 0.1);
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .form-title {
+        text-align: center;
+        color: #007bff; /* deep blue */
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 25px;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #007bff;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .form-control:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+            outline: none;
+        }
+
+    .text-danger {
+        color: #dc2626;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    .btn {
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+    }
+
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+        }
+
+    .btn-outline-secondary {
+        background-color: transparent;
+        color: #1e3a8a;
+        border: 2px solid #1e3a8a;
+        padding: 10px 18px;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-outline-secondary:hover {
+            background-color: #1e3a8a;
+            color: white;
+        }
+</style>
+
+<h2 class="form-title">Write Diagnosis</h2>
+
+<div class="diagnosis-container">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-body">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Diagnosis.PatientId, "Patient", htmlAttributes: new { @class = "form-label" })
+                @Html.DropDownListFor(model => model.Diagnosis.PatientId, new SelectList(Model.Patients, "Id", "FullName"), "Select Patient", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Diagnosis.PatientId, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Diagnosis.Diagnosistic, "Diagnosis", htmlAttributes: new { @class = "form-label" })
+                @Html.TextAreaFor(model => model.Diagnosis.Diagnosistic, new { @class = "form-control", rows = 4 })
+                @Html.ValidationMessageFor(model => model.Diagnosis.Diagnosistic, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Diagnosis.AdditionalNotes, "Additional Notes", htmlAttributes: new { @class = "form-label" })
+                @Html.TextAreaFor(model => model.Diagnosis.AdditionalNotes, new { @class = "form-control", rows = 4 })
+                @Html.ValidationMessageFor(model => model.Diagnosis.AdditionalNotes, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group text-center">
+                <input type="submit" value="Write Diagnosis" class="btn btn-primary" />
+            </div>
+        </div>
+    }
+</div>
